@@ -1,8 +1,9 @@
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 
 
 const sequelize = new Sequelize('ejamerica', 'root', '',{
     host:'localhost',
+    logging:false,
     dialect:'mysql'
 
 })
@@ -14,4 +15,12 @@ try{
     console.error('Unable to connect to database',error);
 }
 
-module.exports= sequelize;
+const db = {}
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+
+db.post = require('./post')(sequelize,DataTypes)
+db.sequelize.sync({force:true})
+
+
+module.exports= db;

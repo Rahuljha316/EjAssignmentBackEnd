@@ -1,5 +1,6 @@
 const express = require("express");
-const Post = require("./models/post");
+const postRouter = require('./routes/postRoute')
+require('./models/index')
 
 const app = express();
 
@@ -9,7 +10,7 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-Post.sync({}).then(() => console.log("model is synced"));
+app.use('/posts',postRouter)
 
 app.listen(port, () => {
   console.log(`app is running at ${port}`);
