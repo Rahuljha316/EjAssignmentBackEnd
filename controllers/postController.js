@@ -9,8 +9,10 @@ const createPost = async (req, res) => {
 
   res.status(200).send(post);
 
-  }catch{
+  }catch(error){
+    console.log(error);
     res.status(500).send()
+
   }
   
 };
@@ -19,6 +21,9 @@ const getAllPost = async(req,res) =>{
     try{
 
         const allPost = await Post.findAll()
+        if(!allPost) res.send([])
+
+        res.status(200).send(allPost)
 
     }catch{
         res.status(500).send()
@@ -27,9 +32,10 @@ const getAllPost = async(req,res) =>{
 
 const getPostById = async (req, res) => {
     try{
-        const {id } = req.params
-  
-        const post = await Post.findbyPk(id);
+      
+        const { id } = req.params
+      
+        const post = await Post.findOne({where:{id:id}});
     
         if(!post) return res.status(404).send('post not found')
         res.status(200).send(post)
@@ -64,6 +70,7 @@ const deletePost = async (req,res) =>{
 
     try{
         const { id } = req.params;
+        console.log(id);
 
         const post = Post.destroy({where:{id: id} })
         if(!post) return res.status(404).send('not found')
