@@ -1,13 +1,16 @@
-const express = require('express')
+const express = require("express");
+const Post = require("./models/post");
 
 const app = express();
-require('./models/index')
-const port = 3000
 
-app.get('/', (req,res) =>{
-    res.send('hello world')
-})
+const port = 3000;
 
-app.listen(port,() =>{
-    console.log(`app is running at ${port}`);
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
+Post.sync({}).then(() => console.log("model is synced"));
+
+app.listen(port, () => {
+  console.log(`app is running at ${port}`);
 });

@@ -13,3 +13,5 @@ try{
 }catch(error){
     console.error('Unable to connect to database',error);
 }
+
+module.exports= sequelize;
