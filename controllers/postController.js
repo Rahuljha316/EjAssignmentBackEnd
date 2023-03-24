@@ -3,9 +3,9 @@ const Post = db.post;
 
 const createPost = async (req, res) => {
   try{
-    const { id, title, content } = req.body;
+    const {  title, content } = req.body;
   
-  const post = await Post.create({ id, title, content });
+  const post = await Post.create({  title, content });
 
   res.status(200).send(post);
 

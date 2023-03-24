@@ -1,14 +1,13 @@
 const express = require("express");
 const postRouter = require('./routes/postRoute')
 require('./models/index')
+const cors = require('cors')
 
 const app = express();
 
 const port = 3000;
 
-// app.get("/", (req, res) => {
-//   res.send("hello world");
-// });
+app.use(cors())
 app.use(express.json())
 
 app.use('/posts',postRouter)

@@ -20,7 +20,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.post = require('./post')(sequelize,DataTypes)
-db.sequelize.sync({})
+db.sequelize.sync({force:false})
 
 
 module.exports= db;
