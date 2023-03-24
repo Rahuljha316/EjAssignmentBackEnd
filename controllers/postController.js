@@ -70,7 +70,7 @@ const deletePost = async (req,res) =>{
 
     try{
         const { id } = req.params;
-        console.log(id);
+       
 
         const post = Post.destroy({where:{id: id} })
         if(!post) return res.status(404).send('not found')
